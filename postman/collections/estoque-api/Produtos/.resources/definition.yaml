@@ -1,3 +1,4 @@
 $kind: collection
 name: Produtos
 description: Endpoints para gerenciamento de produtos no estoque
+order: 1000

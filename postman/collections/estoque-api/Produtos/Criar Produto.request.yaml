@@ -1,0 +1,14 @@
+$kind: http-request
+url: "{{base_url}}/produtos"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: json
+  content: |-
+    {
+      "nome": "Jurubeba",
+      "quantidade": 10,
+      "preco": 12345
+    }
+order: 1000
