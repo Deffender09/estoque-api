@@ -1,4 +1,7 @@
 $kind: collection
 name: Produtos
 description: Endpoints para gerenciamento de produtos no estoque
+<<<<<<< HEAD
 order: 1000
+=======
+>>>>>>> ff5200cbb7c5742728c4915b69e3781d7a84485a

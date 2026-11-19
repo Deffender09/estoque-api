@@ -1,5 +1,12 @@
 $kind: collection
 name: Estoque API
+<<<<<<< HEAD
 description: Coleção de endpoints da API de controle de estoque (estoque-api)
 variables:
   base_url: http://localhost:3000
+=======
+description: 'Coleção de endpoints da API de controle de estoque (estoque-api)'
+variables:
+  - key: base_url
+    value: 'http://localhost:3000'
+>>>>>>> ff5200cbb7c5742728c4915b69e3781d7a84485a
