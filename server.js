@@ -1,41 +1,57 @@
-require('dotenv').config();
-const loggerMiddleware = require('./src/middleware/logger')
-const valorProdutoMiddleware = require('./src/middleware/valorProduto')
-const valorDobradoMiddleware = require('./src/middleware/valorDobrado')
-const express = require('express');
+import dotenv from 'dotenv';
+dotenv.config();
+
+import {loggerMiddleware} from './src/middleware/index.js';
+import express, { json, urlencoded } from 'express';
 const app = express();
 const port = 3000;
 
 //middleware/
-app.use(express.json());
+app.use(json());
 // para formatar os dados do formulario
-app.use(express.urlencoded({extended: true}));
+app.use(urlencoded({extended: true}));
 //para formatar dados do formulario urlencoded
 app.use(loggerMiddleware)
 
-app.use(valorProdutoMiddleware)
-
-app.use(valorDobradoMiddleware)
 
 app.get('/',function(req,res){
-    res.send('ola mundo, meu nome é ' + process.env.nome)
+    res.status(200).json({
+        "status": "Ok",
+        "codigo": 200,
+        "mensagem": `Bem Vindo`
+    })
 });
 
 app.post('/produtos', (req,res) => {
-    let produto = req.body
+        let produto = req.body
 
-    res.send(`O produto foi criado! Nome: ${produto.nome}, Valor:${produto.preco}`)
+            // res.send(`O produto foi criado! Nome: ${produto.nome}, Valor:${produto.preco}`)
+            res.status(201).json({
+            "status": "Sucesso",
+            "codigo": 201,
+            "mensagem": `O Produto foi criado! Nome: ${produto.nome}, valor: ${produto.preco}`
+    })
 })
 
 app.put('/produtos/:id',(req,res) =>{
-    let id = req.params.id 
-    let produto = req.body
-     res.send(`O produto ${id} foi alterado`)
+        let id = req.params.id 
+            //let produto = req.body
+            //res.send(`O produto ${id} foi alterado`)  
+
+            res.status(200).json({
+            "status": "Alterado",
+            "codigo": 200,
+            "mensagem": `O Produto ${id} foi alterado! Nome: ${produto.nome}, valor: ${produto.preco}`
+    })
 })
 
 app.delete('/produtos/:id', (req,res) =>{
     let id = req.params.id 
-     res.send(`O produto ${id} foi deletado`)
+     res.status(200).json({
+        "status": "Deletado",
+        "codigo": 200,
+        "mensagem": `O Produto ${id} foi deletado! `
+    })
 })
 
 app.listen(port, function(){
